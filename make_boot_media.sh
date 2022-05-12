@@ -7,9 +7,11 @@ disk="$1"
 alpine_release='3.15'
 archive="alpine-rpi-$alpine_release.0-aarch64.tar.gz"
 
-curl \
-  "https://dl-cdn.alpinelinux.org/alpine/v$alpine_release/releases/aarch64/$archive" \
-  -o "$archive"
+if [ ! -f "$archive" ]; then
+  curl \
+    "https://dl-cdn.alpinelinux.org/alpine/v$alpine_release/releases/aarch64/$archive" \
+    -o "$archive"
+fi
 
 sudo sfdisk --delete "$disk"
 sudo wipefs --all "$disk"
