@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 set -ex
 
@@ -19,7 +19,7 @@ sudo sfdisk "$disk" <<EOF
   ,,
 EOF
 
-parts=($(lsblk "$disk" --json | jq -r '[.blockdevices[0].children |= sort_by(."maj:min") | .blockdevices[0].children[].name] | @sh' | tr -d \'))
+read -ra parts < <(lsblk "$disk" --json | jq -r '[.blockdevices[0].children |= sort_by(."maj:min") | .blockdevices[0].children[].name] | @sh' | tr -d \')
 
 boot_part="/dev/${parts[0]}"
 persist_part="/dev/${parts[1]}"
