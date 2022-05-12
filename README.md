@@ -4,7 +4,7 @@ Simple scripts to automate creation of boot media for a diskless Alpine Linux in
 
 ## Usage
 
-- `./make_boot_media.sh /dev/sdX`
+- `./make_boot_media.sh /dev/mmcblk0`
 - (make any additional changes, e.g. setting user config)
 - `./umount_boot_media.sh`
 
