@@ -2,14 +2,15 @@
 
 set -ex
 
-disk="$1"
+arch="$1"
+alpine_release="$2"
+disk="$3"
 
-alpine_release='3.15'
-archive="alpine-rpi-$alpine_release.0-aarch64.tar.gz"
+archive="alpine-rpi-$alpine_release.0-$arch.tar.gz"
 
 if [ ! -f "$archive" ]; then
   curl \
-    "https://dl-cdn.alpinelinux.org/alpine/v$alpine_release/releases/aarch64/$archive" \
+    "https://dl-cdn.alpinelinux.org/alpine/v$alpine_release/releases/$arch/$archive" \
     -o "$archive"
 fi
 
